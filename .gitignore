@@ -1,5 +1,6 @@
 .pyc
-data
 .ipynb_checkpoints
 model.pth
 optimizer.pth
+
+*/lightning_logs
