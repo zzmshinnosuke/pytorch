@@ -89,19 +89,19 @@ mnist_model = MNISTModel()
 
 # Init DataLoader from MNIST Dataset
 train_ds = MNIST("../", train=True, download=True, transform=transforms.ToTensor())
-train_loader = DataLoader(train_ds, batch_size=32,num_workers=5)
+train_loader = DataLoader(train_ds, batch_size=32, num_workers=5)
 
 test_ds = MNIST("../", train=False, download=True, transform=transforms.ToTensor())
-test_loader = DataLoader(test_ds, batch_size=32,num_workers=5)
+test_loader = DataLoader(test_ds, batch_size=32, num_workers=5)
 
 
 # Initialize a trainer
 trainer = pl.Trainer(gpus=1, max_epochs=2, progress_bar_refresh_rate=20)
 
 # Train the model 
-trainer.fit(mnist_model, train_loader,test_loader)
+trainer.fit(mnist_model, train_loader, test_loader)
 
-trainer.test(mnist_model,test_loader)
+trainer.test(mnist_model, test_loader)
 
 
 
