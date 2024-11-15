@@ -1,0 +1,86 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "sh_file_debug",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 9501
+            }
+        },
+        {
+            "name": "Python Debugger: debug1",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1"
+            },
+            "args": [
+                "--gpu_nums", "100"
+            ]
+        },
+        {
+            "name": "Python Debugger: debug2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1"
+            },
+            "args": [
+                "--gpu_nums", "101"
+            ]
+        },
+        {
+            "name": "Python Debugger: torchrun",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/miniconda3/envs/timechat/bin/torchrun", //"${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1,3"
+            },
+            "args": [
+                "--nnodes",
+                 "1",
+                "--nproc-per-node", 
+                "5", 
+                "${file}", 
+                "--model_name_or_path", 
+                "Mytsbir"
+            ]
+        },
+        {
+            "name": "Python Debugger: deepspeed",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/miniconda3/envs/work/bin/deepspeed", //"${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--num_nodes",
+                "1",
+                "--num_gpus",
+                "4",
+                "${file}",
+                "--deepspeed",
+                "./config/default_offlload_zero2.json",
+                "--model_name_or_path",
+                "my_model",
+                "--output_dir",
+                "hhh"
+            ]
+        }
+    ]
+}
